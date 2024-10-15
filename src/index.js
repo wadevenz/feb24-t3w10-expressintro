@@ -23,6 +23,10 @@ app.post("/bananas", (request, response) => {
     });
 });
 
+const PokemonController = require("./controllers/pokemonController.js");
+
+app.use("/pokemon", PokemonController);
+
 const PORT = 3000;
 
 app.listen(PORT, () => {

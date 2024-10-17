@@ -30,7 +30,21 @@ async function getPokeApiData (request, response, next){
     next();
 }
 
+async function trimPokeApiData (request, response, next) {
+    let validData = await request.pokemonStuff.responseData.json();
+
+    let trimmedData = {
+        name: validData.name,
+        image: validData.sprites.front_default
+    };
+
+    response.json({
+        result: trimmedData
+    });
+}
+
 module.exports = {
     getOrCreatePokemonNumber,
-    getPokeApiDatas
+    getPokeApiData,
+    trimPokeApiData
 }

@@ -1,5 +1,5 @@
 const express = require("express");
-const { getOrCreatePokemonNumber, getPokeApiData } = require('../middelware/pokeApiMiddleware')
+const { getOrCreatePokemonNumber, getPokeApiData, trimPokeApiData } = require('../middelware/pokeApiMiddleware')
 // create an instance of just a router, not a full server
 const router = express.Router();
 
@@ -33,12 +33,14 @@ router.get(
     //Middleware goes here
     getOrCreatePokemonNumber,
     getPokeApiData,
-
-
+    trimPokeApiData, // ------> response.json early exit
+    // |
+    // |
+    // 
     //Middleware finishe here
     (request, response) => {
     response.json({
-        result: response.customData.pokemonData
+        result: "todo!"
     });
 });
 

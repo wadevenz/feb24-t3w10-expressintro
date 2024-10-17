@@ -4,10 +4,23 @@ const express = require("express");
 // so we can configure it. e.g routes, settings
 const app = express();
 
-app.get("/", (request, response) => {
+function newMiddleware (request, response, next){
+    console.log("Middleware is now running");
+    request.customData= {
+        ...request.customData,
+        new: "cool programming!"
+    };
+    // request.customData.new = "cool programming!" - error as new wasnt defined yet
+    next();
+}
+
+app.get("/", 
+    newMiddleware,
+    (request, response) => {
     // response.send("<h1>Hello world!</h1>");
     response.json({
-        message: "Hello world!"
+        message: "Hello world!",
+        custom: request.customData
     });
 });
 

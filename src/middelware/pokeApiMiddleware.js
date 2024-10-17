@@ -10,7 +10,7 @@ const getOrCreatePokemonNumber = (request, response, next) => {
 
     // How to transfer pokemonNumber from this middleware to other middleware
     request.pokemonStuff = {
-        ...request.pokmeonStuff, // ... a.k.a the spread operator helps us keep existing object data
+        ...request.pokemonStuff, // ... a.k.a the spread operator helps us keep existing object data
         pokemonNumber
     }
     next();
@@ -18,12 +18,12 @@ const getOrCreatePokemonNumber = (request, response, next) => {
 
 
 async function getPokeApiData (request, response, next){
-    let pokemonID = request.pokmeonStuff.pokemonNumber;
+    let pokemonID = request.pokemonStuff.pokemonNumber;
     console.log(pokemonID);
 
     let responseData = await fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonID);
     request.pokemonStuff = {
-        ...request.pokmeonStuff, // ... a.k.a the spread operator helps us keep existing object data
+        ...request.pokemonStuff, // ... a.k.a the spread operator helps us keep existing object data
         responseData
     }
     // pokemonData = await responseData.json();

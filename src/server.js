@@ -37,8 +37,11 @@ app.post("/bananas", (request, response) => {
 });
 
 const PokemonController = require("./controllers/pokemonController.js");
-
 app.use("/pokemon", PokemonController);
+
+const UserController = require("./controllers/userController.js")
+app.use("/users", UserController);
+
 
 module.exports = {
     app

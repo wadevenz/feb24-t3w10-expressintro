@@ -4,6 +4,12 @@ const express = require("express");
 // so we can configure it. e.g routes, settings
 const app = express();
 
+// Configure the app instance for whatever we need
+
+app.use(express.json());
+
+// And THEN set up the routes!
+
 function newMiddleware (request, response, next){
     console.log("Middleware is now running");
     request.customData= {
